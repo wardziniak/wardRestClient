@@ -7,11 +7,15 @@ import org.apache.http.entity.StringEntity;
 
 public abstract class JSONableRequestObject {
 
-	public abstract String toJSON();
+	public String toJSON() {
+		return null;
+	}
 	
 	public abstract String getPathWithParameters();
 	
-	public abstract boolean hasJsonableContent();
+	public boolean hasJsonableContent() {
+		return false;
+	}
 	
 	public final HttpEntityEnclosingRequestBase addToBody(HttpEntityEnclosingRequestBase httpEntityEnclosingRequestBase) throws UnsupportedEncodingException {
 		if (hasJsonableContent())

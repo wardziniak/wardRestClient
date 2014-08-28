@@ -1,8 +1,7 @@
 package com.wardziniak.jsonRestClient;
 
+import org.apache.commons.logging.Log;
 import org.apache.http.HttpStatus;
-
-import android.util.Log;
 
 
 
@@ -30,12 +29,10 @@ public class Response<T> {
     }
     
     public static <T> Response<T> error(int statusCode) {
-    	Log.w(TAG, "statusCode:" + statusCode);
     	return new Response<T>(statusCode);
     }
     
     public static <T> Response<T> error(String errorMessage) {
-    	Log.w(TAG, "errorMessage:" + errorMessage);
     	return new Response<T>(errorMessage);
     }
     

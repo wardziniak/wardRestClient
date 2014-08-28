@@ -59,7 +59,7 @@ public class Request {
 	}
 	
 	public String getPath() {
-		return null;
+		return jsonable.getPathWithParameters();
 	}
 
 	public MethodType getMethod() {

@@ -11,39 +11,29 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
-public class WardRestClient {
+public class DefaultRestClient extends RestClient {
 	
 	private HttpClient httpClient = HttpClients.createDefault();
 	
-	private final String host;
+	//private final String host;
 	
-	private static WardRestClient wardClient = null;
+	//private static WardRestClient wardClient = null;
 	
 	public static final int TIMEOUT = 3000;
 	
-	private WardRestClient(String host) {
-		this.host = host;
+	protected DefaultRestClient(String host) {
+		this.setHostname(host);
 	}
 	
-	public static synchronized WardRestClient getInstance(String host) {
-		if (wardClient == null)
-			wardClient = new WardRestClient(host);
-		return wardClient;
-	}
-	
-	
+	@Override
 	public synchronized <T> Response<T> execute(Request request, Class<T> type) throws ClientProtocolException, IOException {
-		HttpParams params = httpClient.getParams();
-		HttpConnectionParams.setConnectionTimeout(params, TIMEOUT);
-		HttpConnectionParams.setSoTimeout(params, TIMEOUT);
+//		HttpParams params = httpClient.getParams();
+//		HttpConnectionParams.setConnectionTimeout(params, TIMEOUT);
+//		HttpConnectionParams.setSoTimeout(params, TIMEOUT);
 		HttpRequestBase httpRequestBase = request.parseToHttpRequest();
 		httpRequestBase.setURI(URI.create(this.createRequestUri(request)));
 		HttpResponse httpResponse = httpClient.execute(httpRequestBase);
 		return request.parseResponse(httpResponse, type);
-	}
-	
-	private String createRequestUri(Request request) {
-		return this.host + request.getPath();
 	}
 	
 

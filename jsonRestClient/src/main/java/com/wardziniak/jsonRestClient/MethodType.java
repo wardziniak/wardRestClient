@@ -1,7 +1,6 @@
 package com.wardziniak.jsonRestClient;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
 
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
