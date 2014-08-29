@@ -8,7 +8,7 @@ public class TestObject extends JSONableRequestObject {
 	@Override
 	public String getPathWithParameters() {
 		// TODO Auto-generated method stub
-		return "/legisPeritum/rest/pobierzMieszkania";
+		return "//legisPeritum/rest/pobierzMieszkania";
 	}
 
 	@Override

@@ -8,6 +8,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 
+import com.wardziniak.jsonRestClient.exceptions.UnknownMethod;
+
 public enum MethodType {
 	GET, POST, PUT, DELETE;
 

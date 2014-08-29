@@ -20,18 +20,15 @@ public class Request {
 	
 	private MethodType method;
 
-	private String url;
+	//private String url;
 	
-	private String authorizationHeader;
+	//private String authorizationHeader;
 
 	private JSONableRequestObject jsonable;
 
-	public Request(String url, String authorizationHeader, JSONableRequestObject jsonable) { 
+	public Request(JSONableRequestObject jsonable) { 
 		this.method = jsonable.getMethodType();
-		this.url = url;
 		this.jsonable = jsonable;
-		this.authorizationHeader = authorizationHeader;
-		this.url += jsonable.getPathWithParameters();
 	}
 	
 	public HttpRequestBase parseToHttpRequest() throws UnsupportedEncodingException {
@@ -41,8 +38,6 @@ public class Request {
 	public <T> Response<T> parseResponse(HttpResponse httpResponse, Class<T> type) {
 		try {
 			final String jsonString = EntityUtils.toString(httpResponse.getEntity(), CHARSET);
-			//final String jsonString = EntityUtils.toString(httpResponse.getEntity());
-			//Log.d("TradeShow", "json:" + jsonString);
 			if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 				Gson gson = new Gson();
 				return Response.success(gson.fromJson(jsonString, type));
@@ -70,14 +65,6 @@ public class Request {
 		this.method = method;
 	}
 
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
 	public JSONableRequestObject getJsonable() {
 		return jsonable;
 	}
@@ -86,7 +73,4 @@ public class Request {
 		this.jsonable = jsonable;
 	}
 	
-//	public String getAuthorizationHeader() {
-//		return Helper.AUTHORIZATIO_TYPE + authorizationHeader;
-//	}
 }

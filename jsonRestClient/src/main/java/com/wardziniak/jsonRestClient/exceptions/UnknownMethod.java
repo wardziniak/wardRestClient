@@ -1,4 +1,4 @@
-package com.wardziniak.jsonRestClient;
+package com.wardziniak.jsonRestClient.exceptions;
 
 public class UnknownMethod extends RuntimeException {
 
